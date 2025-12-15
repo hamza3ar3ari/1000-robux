@@ -68,14 +68,33 @@ const App: React.FC = () => {
     }, 2000);
 
     // Step 2: Trigger Locker
-    setTimeout(() => {
-        setIsLoading(false);
-        if (typeof window.og_load === 'function') {
-            window.og_load();
-        } else {
-            console.error("Content Locker Script not loaded yet.");
-            alert("Security Check Loading... Please wait and click again.");
-        }
+    setTimeout(async () => {
+        
+        // Wait for locker script to be ready
+        let attempts = 0;
+        const maxAttempts = 50; // Wait up to 5 seconds
+        
+        const checkAndTriggerLocker = () => {
+            if (typeof window.og_load === 'function') {
+                setIsLoading(false);
+                window.og_load();
+            } else if (window.og_block) {
+                // If the script was flagged as blocked/errored
+                setIsLoading(false);
+                alert("Verification Protected: AdBlocker Detected.\n\nPlease disable your AdBlocker to allow the human verification to appear.");
+            } else {
+                attempts++;
+                if (attempts < maxAttempts) {
+                    setTimeout(checkAndTriggerLocker, 100);
+                } else {
+                    setIsLoading(false);
+                    console.error("Content Locker Script failed to load.");
+                    alert("Connection Timed Out. Please check your internet connection or disable AdBlock.");
+                }
+            }
+        };
+
+        checkAndTriggerLocker();
     }, 3500);
   };
 

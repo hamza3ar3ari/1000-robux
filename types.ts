@@ -1,10 +1,7 @@
-export interface Window {
-  og_load: () => void;
-}
-
 declare global {
   interface Window {
     og_load: () => void;
+    og_block?: boolean;
   }
 }
 
